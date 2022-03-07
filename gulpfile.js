@@ -2,7 +2,7 @@
  * @Description: gulpfile.js
  * @Author: Moobye
  * @Date: 2022-03-04 00:14:57
- * @LastEditTime: 2022-03-04 02:38:22
+ * @LastEditTime: 2022-03-06 22:16:16
  * @LastEditors: Moobye
  */
 const gulp = require("gulp"),
@@ -10,7 +10,8 @@ const gulp = require("gulp"),
   watch = require("gulp-watch"),
   browser = require("browser-sync"),
   fileinclude = require("gulp-file-include"),
-  imagemin = require("gulp-imagemin"),
+  imagemin = require('gulp-imagemin'), // 图片压缩
+  pngquant = require('imagemin-pngquant'), // 深度压缩
   replace = require("gulp-replace"),
   htmlmin = require("gulp-htmlmin"),
   cssmiin = require("gulp-clean-css"),
@@ -19,7 +20,7 @@ const gulp = require("gulp"),
 // 不同环境相关配置
 const public_path =
   process.env.NODE_ENV == "development" ? "./" : "./";
-const tastArr =
+const devArr =
   process.env.NODE_ENV == "development"
     ? ["watch", "serve", "sass", "js", "html", "image", "pages"]
     : ["sass", "js", "html", "image", "pages"];
@@ -28,13 +29,12 @@ const path = {
   sass: "src/sass/*.scss",
   js: "src/js/*.js",
   html: "src/*.html",
-  image: "src/images/*.{png,jpg,gif,ico}",
+  image: "src/image/*.{png,jpg,gif,ico}",
   pages: "src/pages/*.html",
 };
 
 // 编译sass
 gulp.task("sass", function () {
-  console.log('object :>> ');
   gulp.src(path.sass).pipe(sass()).pipe(gulp.dest("./build/css/"));
 });
 
@@ -68,7 +68,9 @@ gulp.task("html", function () {
         prefix: "@@",
         basepath: "@file",
         context: {
-          OA: "layout",
+          layout: "layout",
+          cover: "cover",
+          content: "content",
         },
       }),
     )
@@ -77,13 +79,14 @@ gulp.task("html", function () {
     .pipe(gulp.dest("./build/"));
 });
 
-gulp.task("pages", function () {
+gulp.task("pages",['html'], function () {
   gulp.src(path.pages).pipe(gulp.dest("./build/pages/"));
 });
 
 // 压缩图片
-gulp.task("image", function () {
-  gulp.src(path.image).pipe(gulp.dest("./build/image/"));
+gulp.task("image", function(){
+  return gulp.src(path.image)
+    .pipe(gulp.dest('./build/image/')); // 输出路径
 });
 
 // 自动刷新 检测src || build
@@ -102,9 +105,9 @@ gulp.task("watch", function () {
   gulp.watch(path.sass, ["sass"]);
   gulp.watch(path.js, ["js"]);
   gulp.watch(path.html, ["html"]);
-  gulp.watch(path.image, ["images"]);
+  gulp.watch(path.image, ["image"]);
   gulp.watch(path.pages, ["pages"]);
 });
 
 // default是gulp执行任务的入口必须存在
-gulp.task("default", tastArr);
+gulp.task("default", devArr);

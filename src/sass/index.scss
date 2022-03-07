@@ -1,5 +1,6 @@
 @import "reset";
 @import "var";
+@import "function";
 html, body{
   margin: 0;
   padding: 0;
@@ -43,7 +44,6 @@ div{
   display: block;
 }
 .book-hd {
-  height: 95px;
   font-family: Microsoft YaHei;
   font-size: 24px;
   font-weight: bold;
@@ -51,18 +51,26 @@ div{
   text-align: center;
   height: 96px;
   line-height: 96px;
+  border-bottom: 1px solid #efefef;
 }
 .book-bd{
   padding: 0 40px;
-  height: calc(100vh - 94px);
+  // padding-top: 180px;
+  height: calc(100vh - 97px);
   overflow-y: auto;
   overflow-x: hidden;
   box-sizing: border-box;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
 }
 
 .catalog-bd{
-  padding-top: 28px;
-  padding-left: 62px;
+  padding: 28px 46px 0 62px;
+  height: calc(100vh - 97px);
+  overflow-x: hidden;
+  overflow-y: auto;
 
   .first-cate{
     padding-bottom: 20px;
@@ -83,6 +91,7 @@ div{
     font-family: Microsoft YaHei;
     color: #646A73;
     cursor: pointer;
+    line-height: 1.5;
     
     &:hover{
       color: $color-main;
@@ -93,11 +102,70 @@ div{
     padding-left: 48px;
     font-size: 16px;
     font-family: Microsoft YaHei;
-    color: #646A73;
+    color: #828994;
     cursor: pointer;
+    line-height: 1.5;
     
     &:hover{
       color: $color-main;
+    }
+  }
+}
+
+.page-size {
+  margin: 20px auto;
+  width: 800px;
+  height: 1072px;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
+}
+.cover{
+  // margin-top: 150px;
+  background: url(./image/cover.png) no-repeat cover;
+
+  .cover-img{
+    width: 100%;
+  }
+}
+
+// 移动端
+body {
+  background-color: #f5f5f5;
+}
+.main-wrap{
+  max-width:750px;
+  min-height: 100vh;
+  position: relative;
+  margin: 0 auto;
+  background: #fff;
+  .header {
+    position: relative;
+    padding: 12px 0 15px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border: 0.5px solid #F3F3F3;
+    
+    .logo{
+      width: 90px;
+      height: 23px;
+    }
+    
+    .icon {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+    }
+  }
+  h1{
+    font-size: rem(14);
+    text-align: center;
+    color: $color-main;
+    padding: rem(10) 0;
+  }
+  .page{
+    background-color: #333;
+    img {
+      width: 100%;
     }
   }
 }

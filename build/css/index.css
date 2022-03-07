@@ -74,25 +74,27 @@ div {
   display: block; }
 
 .book-hd {
-  height: 95px;
   font-family: Microsoft YaHei;
   font-size: 24px;
   font-weight: bold;
   color: #3660AD;
   text-align: center;
   height: 96px;
-  line-height: 96px; }
+  line-height: 96px;
+  border-bottom: 1px solid #efefef; }
 
 .book-bd {
   padding: 0 40px;
-  height: calc(100vh - 94px);
+  height: calc(100vh - 97px);
   overflow-y: auto;
   overflow-x: hidden;
   box-sizing: border-box; }
 
 .catalog-bd {
-  padding-top: 28px;
-  padding-left: 62px; }
+  padding: 28px 46px 0 62px;
+  height: calc(100vh - 97px);
+  overflow-x: hidden;
+  overflow-y: auto; }
   .catalog-bd .first-cate {
     padding-bottom: 20px;
     font-size: 18px;
@@ -101,22 +103,68 @@ div {
     color: #646A73;
     cursor: pointer; }
     .catalog-bd .first-cate:hover {
-      color: #1e88e1; }
+      color: #3660AD; }
   .catalog-bd .second-cate {
     padding-bottom: 20px;
     padding-left: 24px;
     font-size: 18px;
     font-family: Microsoft YaHei;
     color: #646A73;
-    cursor: pointer; }
+    cursor: pointer;
+    line-height: 1.5; }
     .catalog-bd .second-cate:hover {
-      color: #1e88e1; }
+      color: #3660AD; }
   .catalog-bd .third-cate {
     padding-bottom: 20px;
     padding-left: 48px;
     font-size: 16px;
     font-family: Microsoft YaHei;
-    color: #646A73;
-    cursor: pointer; }
+    color: #828994;
+    cursor: pointer;
+    line-height: 1.5; }
     .catalog-bd .third-cate:hover {
-      color: #1e88e1; }
+      color: #3660AD; }
+
+.page-size {
+  margin: 20px auto;
+  width: 800px;
+  height: 1072px;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1); }
+
+.cover {
+  background: url(./image/cover.png) no-repeat cover; }
+  .cover .cover-img {
+    width: 100%; }
+
+body {
+  background-color: #f5f5f5; }
+
+.main-wrap {
+  max-width: 750px;
+  min-height: 100vh;
+  position: relative;
+  margin: 0 auto;
+  background: #fff; }
+  .main-wrap .header {
+    position: relative;
+    padding: 12px 0 15px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border: 0.5px solid #F3F3F3; }
+    .main-wrap .header .logo {
+      width: 90px;
+      height: 23px; }
+    .main-wrap .header .icon {
+      position: absolute;
+      top: 18px;
+      left: 18px; }
+  .main-wrap h1 {
+    font-size: 0.37333rem;
+    text-align: center;
+    color: #3660AD;
+    padding: 0.26667rem 0; }
+  .main-wrap .page {
+    background-color: #333; }
+    .main-wrap .page img {
+      width: 100%; }
