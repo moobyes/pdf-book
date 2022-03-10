@@ -106,7 +106,7 @@ const categories = [
         ],
       },
       {
-        text: "保护知识产品",
+        text: "保护知识产权",
         name: "protect",
         children: [
           { text: "企业知识产权保护", name: "copyright" },
@@ -196,7 +196,7 @@ const categories = [
         name: "digital-skill",
         children: [
           {
-            text: "推动院校与产业人才供给接轨伟用户提供培训与技能认证",
+            text: "推动院校与产业人才供给接轨",
             name: "training",
           },
         ],
@@ -213,7 +213,7 @@ const categories = [
   },
 ];
 
-$("img").lazyload({ effect: "fadeIn", threshold: 200 });
+$("img").lazyload({ effect: "fadeIn", threshold: 200, placeholder : "image/loading.gif" });
 // placeholder : "image/loading.gif",
 const cateBox = $("nav");
 console.log(cateBox);
@@ -288,19 +288,18 @@ $.each(aLink, function (i, v) {
     $(v).addClass('active')
     const selector = $(`[top-name=${id}]`)
     if(selector) {
-
-      if(selector.offset().top < 0) {
-        $('.page-content').animate({
-        scrollTop: selector.offset().top - 200
-      }, 800);
-      } else {
+      if (selector.offset().top > $('.page-content').scrollTop()) {
         $('.page-content').animate({
           scrollTop: selector.offset().top - 200
+        }, 800);
+      } else {
+        $('.page-content').animate({
+          scrollTop: selector.offset().top + $('.page-content').scrollTop() - 200
         }, 800);
       }
       
       
-      console.log(selector.offset().top, v.innerText)
+      console.log('哈哈', selector.offset().top > $('.page-content').scrollTop())
     }
 
 

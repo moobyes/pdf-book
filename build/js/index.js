@@ -105,7 +105,7 @@ var categories = [{
       name: "ecology"
     }]
   }, {
-    text: "保护知识产品",
+    text: "保护知识产权",
     name: "protect",
     children: [{
       text: "企业知识产权保护",
@@ -217,7 +217,7 @@ var categories = [{
     text: "提供数字技能培训",
     name: "digital-skill",
     children: [{
-      text: "推动院校与产业人才供给接轨伟用户提供培训与技能认证",
+      text: "推动院校与产业人才供给接轨",
       name: "training"
     }]
   }]
@@ -234,7 +234,8 @@ var categories = [{
 }];
 $("img").lazyload({
   effect: "fadeIn",
-  threshold: 200
+  threshold: 200,
+  placeholder: "image/loading.gif"
 }); // placeholder : "image/loading.gif",
 
 var cateBox = $("nav");
@@ -286,17 +287,17 @@ $.each(aLink, function (i, v) {
     var selector = $("[top-name=".concat(id, "]"));
 
     if (selector) {
-      if (selector.offset().top < 0) {
+      if (selector.offset().top > $('.page-content').scrollTop()) {
         $('.page-content').animate({
           scrollTop: selector.offset().top - 200
         }, 800);
       } else {
         $('.page-content').animate({
-          scrollTop: selector.offset().top - 200
+          scrollTop: selector.offset().top + $('.page-content').scrollTop() - 200
         }, 800);
       }
 
-      console.log(selector.offset().top, v.innerText);
+      console.log('哈哈', selector.offset().top > $('.page-content').scrollTop());
     }
 
     slideout.toggle();
